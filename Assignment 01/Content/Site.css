@@ -1,0 +1,46 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .navbar-items {
+        @apply space-x-3 flex justify-center items-center rounded-xl px-8 py-3 hover:cursor-pointer hover:bg-[#411941] hover:transition hover:brightness-75;
+    }
+
+    .card {
+        @apply w-[25%] flex flex-col items-center rounded-xl shadow-md bg-gradient-to-br from-[#411941] to-[#020d20];
+    }
+
+    .card-hover {
+        @apply hover:cursor-pointer hover:scale-125 hover:transition hover:shadow-md;
+    }
+
+    .carousel-row {
+        @apply relative flex justify-center space-x-[100px];
+    }
+
+    .carousel {
+        @apply relative w-[25%] h-[200px] shadow-md rounded-full;
+    }
+
+    .carousel-slide {
+        @apply h-[200px] w-full rounded-xl;
+    }
+}
+
+@font-face {
+    font-family: 'opensans-bold';
+    src: url('../fonts/opensans-bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'opensans-regular';
+    src: url('../fonts/opensans-regular.ttf') format('truetype');
+}
+
+.opensans {
+    font-family: 'opensans-regular';
+}
+.opensans-bold {
+    font-family: 'opensans-regular';
+}

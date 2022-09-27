@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = "../Shared/_Navbar.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Education</title>
+</head>
+
+<div class="h-[100%]">
+    <div class="flex space-x-[80px] h-[450px] mt-[120px] ml-[100px]">
+        <div id="card1" class="card card-hover" style="display:none">
+            <div class="border-b border-[#461a45] w-full flex justify-center font-bold text-4xl italic pt-3 pb-3">
+                S.S.C
+            </div>
+            <div class="flex flex-col pt-5 items-center font-medium text-center">
+                <br />
+                <p class="p-3"><span class="font-bold">School: </span>Shaheed Police Smrity College</p>
+                <p class="p-3"><span class="font-bold">Venue: </span>Mirpur Bangla College</p>
+                <p class="p-3"><span class="font-bold">GPA: </span>5.00</p>
+                <p class="p-3"><span class="font-bold">Academic Year: </span>2015-2017</p>
+            </div>
+        </div>
+        <div id="card2" class="card card-hover" style="display:none">
+            <div class="border-b border-[#461a45] w-full flex justify-center font-bold text-4xl italic pt-3 pb-3">
+                H.S.C
+            </div>
+            <div class="flex flex-col pt-5 items-center font-medium text-center">
+                <br />
+                <p class="p-3"><span class="font-bold">College: </span>Govt. Science College</p>
+                <p class="p-3"><span class="font-bold">Venue: </span>Mirpur Girls Ideal College</p>
+                <p class="p-3"><span class="font-bold">GPA: </span>5.00</p>
+                <p class="p-3"><span class="font-bold">Academic Year: </span>2017-2019</p>
+            </div>
+        </div>
+        <div id="card3" class="card card-hover" style="display:none">
+            <div class="border-b border-[#461a45] w-full flex justify-center font-bold text-4xl italic pt-3 pb-3">
+                B.S.C
+            </div>
+            <div class="flex flex-col pt-5 items-center font-medium text-center">
+                <br />
+                <p class="p-3"><span class="font-bold">University: </span>American International University - Bangladesh</p>
+                <p class="p-3"><span class="font-bold">Venue: </span>American International University - Bangladesh</p>
+                <p class="p-3"><span class="font-bold">CGPA: </span>3.99</p>
+                <p class="p-3"><span class="font-bold">Academic Year: </span>2019-2023</p>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script src="../../content/js/Education.js"></script>
+</div>

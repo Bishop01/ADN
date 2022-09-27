@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="../../Content/output.css" rel="stylesheet">
+</head>
+<body class="h-screen flex flex-col bg-gradient-to-br from-[#012e67] to-[#461a45] text-white">
+    <div id="navbar" class="sticky top-0 flex space-x-3 text-lg border-[#020d20] border-b-[1px] items-center w-full">
+
+        <div id="portfolio" class="flex w-[25%] justify-center">
+            <p class="text-xl italic">Portfolio</p>
+        </div>
+
+        <div id="menu" class="flex ml-8 w-[60%] my-[8px]">
+            <a id="home" class="navbar-items" href="@Url.Action("Index","Student")">
+                <img class="w-8" src="../Content/images/student.png" />
+                <p>Home</p>
+            </a>
+            <a class="navbar-items" href="@Url.Action("Education","Student")">
+                <img class="w-8" src="../Content/images/book.png" />
+                <p>Education</p>
+            </a>
+            <a class="navbar-items" href="@Url.Action("Projects","Student")">
+                <img class="w-8" src="../Content/images/project.png" />
+                <p>Projects</p>
+            </a>
+            <a class="navbar-items" href="@Url.Action("Reference","Student")">
+                <img class="w-8" src="../Content/images/reference.png" />
+                <p>Reference</p>
+            </a>
+        </div>
+
+        <div class="ml-auto">
+            <p>Contact Me!</p>
+        </div>
+
+    </div>
+
+    @RenderBody()
+    
+</body>
+</html>
