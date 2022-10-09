@@ -1,0 +1,101 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="../../Content/Site.css" rel="stylesheet">
+    </head>
+
+    <body class="flex flex-col bg-gradient-to-br from-[#012e67] to-[#461a45] text-white h-screen w-screen">
+
+        <div class="flex items-center justify-center h-full">
+
+            <form class="flex flex-col items-center justify-center shadow-xl border border-[#012e67] rounded-xl w-[30%] h-[70%] space-y-3" method="post" action="/Home/Index">
+                <div class="w-full flex items-center space-x-3 py-1">
+                    <div class="w-[45%] italic text-right tracking-wide"><label>NAME: </label></div>
+                    <div class="w-[45%] border-b border-teal-500 rounded-md relative">
+                        <input class="w-full h-[32px] rounded-md pl-2 bg-[#17355c] focus:outline-none" type="text" placeholder="Enter your name" name="name" value="@(Model==null ? "" : Model.name)" />
+                        <div class="text-xs text-red-500 absolute">
+                            @Html.ValidationMessage("name")
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex items-center space-x-3 py-1">
+                    <div class="w-[45%] italic text-right tracking-wide"><label>ID: </label></div>
+                    <div class="w-[45%] border-b border-teal-500 rounded-md">
+                        <input id="id" class="w-full h-[32px] rounded-md pl-2 bg-[#17355c] focus:outline-none" type="text" placeholder="Enter your id" name="id" value="@(Model==null ? "" : Model.id)" />
+                        <div class="text-xs text-red-500 absolute">
+                            @Html.ValidationMessage("id")
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex items-center space-x-3 py-1">
+                    <div class="w-[45%] italic text-right tracking-wide"><label>PASSWORD: </label></div>
+                    <div class="w-[45%] border-b border-teal-500 rounded-md">
+                        <input class="w-full h-[32px] rounded-md pl-2 bg-[#17355c] focus:outline-none" type="password" placeholder="Enter your password" name="password" value="@(Model==null ? "" : Model.password)" />
+                        <div class="text-xs text-red-500 absolute">
+                            @Html.ValidationMessage("password")
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex items-center space-x-3 py-1">
+                    <div class="w-[45%] italic text-right tracking-wide"><label>CONFIRM PASSWORD: </label></div>
+                    <div class="w-[45%] border-b border-teal-500 rounded-md">
+                        <input class="w-full h-[32px] rounded-md pl-2 bg-[#17355c] focus:outline-none" type="password" placeholder="Enter your password" name="cPassword" value="@(Model==null ? "" : Model.cPassword)" />
+                        <div class="text-xs text-red-500 absolute">
+                            @Html.ValidationMessage("cPassword")
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex items-center space-x-3 py-1">
+                    <div class="w-[45%] italic text-right tracking-wide"><label>GENDER</label></div>
+                    <div class="flex space-x-7 relative">
+                        <div class="flex items-center space-x-2">
+                            <input class="w-full h-[32px] rounded-md pl-2 bg-[#17355c] border border-black" type="radio" name="gender" value="Male" @(Model == null ? "" : (string.Equals(Model.gender, "Male") ? "checked" : "")) ) />
+                            <label>Male</label>
+                            <div class="w-full text-xs text-red-500 absolute mt-10">
+                                @Html.ValidationMessage("gender")
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input class="w-full h-[32px] rounded-md pl-2 bg-[#17355c] border border-black" type="radio" name="gender" value="Female" @(Model == null ? "" : (string.Equals(Model.gender, "Female") ? "checked" : "")) ) />
+                            <label>Female</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex items-center space-x-3 py-1">
+                    <div class="w-[45%] italic text-right tracking-wide"><label>EMAIL: </label></div>
+                    <div class="w-[45%] border-b border-teal-500 rounded-md">
+                        <input id="email" class="w-full h-[32px] rounded-md pl-2 bg-[#17355c] focus:outline-none" type="email" placeholder="Enter your email" name="email" value="@(Model==null ? "" : Model.email)" />
+                        <div class="text-xs text-red-500 absolute">
+                            @Html.ValidationMessage("email")
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex items-center space-x-3 py-1">
+                    <div class="w-[45%] italic text-right tracking-wide"><label>DATE OF BIRTH: </label></div>
+                    <div class="w-[45%] border-b border-teal-500 rounded-md">
+                        <input class="w-full h-[32px] rounded-md pl-2 bg-[#17355c] focus:outline-none" type="date" name="dob" value="@(Model==null ? "" : Model.dob)" />
+                        <div class="text-xs text-red-500 absolute">
+                            @Html.ValidationMessage("dob")
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="mt-5 py-3 px-7 bg-[#461a45] rounded-lg brightness-[90%] hover:brightness-[80%] hover:transition">Submit</button>
+                </div>
+                <div class="text-green-500">
+                    @TempData["msg"]
+                </div>
+            </form>
+        </div>
+
+        <script src="../../Content/js/jquery-3.6.1.min.js"></script>
+        <script src="../../Content/js/index.js" ></script>
+
+    </body>
+
+</html>
