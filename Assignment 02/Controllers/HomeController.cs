@@ -12,6 +12,7 @@ namespace Assignment_02.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            ModelState.Clear();
             return View();
         }
 
