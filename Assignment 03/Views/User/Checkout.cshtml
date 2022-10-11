@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="../../Content/Site.css" rel="stylesheet">
+    <title>AddProduct</title>
+</head>
+<body class="flex flex-col w-screen h-screen bg-[#f0f2f5]">
+    <div class="flex bg-[#ffffff] w-full text-white">
+        <div class="flex items-center ml-20">
+            <a class="mr-24 py-3 px-4 bg-[#00b843] rounded-lg shadow-xl" href="@Url.Action("Index", "User")">Home</a>
+        </div>
+        <div class="py-4 flex items-center h-24 ml-auto">
+            <a class="py-3 px-4 bg-[#007aeb] rounded-lg shadow-xl mr-5">Cart-@Session["cartCount"]</a>
+            <a class="mr-24 py-3 px-4 bg-[#00b843] rounded-lg shadow-xl" href="@Url.Action("Checkout", "User")">Checkout</a>
+        </div>
+    </div>
+    <div class="text-red-500 font-bold text-2xl ml-20 mt-10">
+        <h2>CART</h2>
+    </div>
+    <div class="w-full h-[500px] flex items-center justify-center mt-10">
+        <form class="w-[90%] h-full" method="post" action="/Admin/Manage">
+            <div class="h-full overflow-y-scroll">
+                <table class="table-fixed border-collapse border border-gray-300 w-full bg-[#ffffff]">
+                    <thead class="text-white bg-[#007aeb] sticky top-0 h-20 shadow-md">
+                        <tr class="">
+                            <th class="border border-gray-300">Product ID</th>
+                            <th class="border border-gray-300">Product Name</th>
+                            <th class="border border-gray-300">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var product in Model)
+                            {
+                                <tr>
+                                    <td class="table-content">@product.id</td>
+                                    <td class="table-content">@product.name</td>
+                                    <td class="table-content">@product.price</td>
+                                    <td class="table-content">
+                                        <a class="w-full text-white py-3 px-4 bg-red-400 rounded-lg shadow-xl" href="@Url.Action("Remove_from_Cart", "User", new { id = product.id })">REMOVE</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>

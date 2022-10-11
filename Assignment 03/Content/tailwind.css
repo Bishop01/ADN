@@ -1,0 +1,7 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.table-content {
+    @apply border border-gray-300 pl-5 h-16 font-semibold;
+}
