@@ -148,14 +148,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shopping.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\User.cs">
+      <DependentUpon>Shopping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="Content\asstes\png\navyDot.png" />
+    <Content Include="Content\asstes\png\purpleDot.png" />
+    <Content Include="Content\asstes\png\train-alt.png" />
+    <Content Include="Content\asstes\png\train.png" />
+    <Content Include="Content\asstes\png\whiteDot.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -213,6 +222,8 @@
     <Content Include="Views\Admin\Manage.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\User\Checkout.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

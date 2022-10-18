@@ -17,6 +17,58 @@ namespace Assignment_03.Controllers
             var products = db.Products.ToList();
             return View(products);
         }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(string email, string password)
+        {
+            var db = new ShoppingEntities();
+            var user = (from u in db.Users
+                        where u.email == email
+                        select u).SingleOrDefault();
+
+            if(user == null || user.password!=password)
+            {
+                ModelState.AddModelError("", "Email or Password did not match");
+                return View();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(Models.User user)
+        {
+            if(ModelState.IsValid)
+            {
+                User newUser = new User()
+                {
+                    name = user.name,
+                    email = user.email,
+                    password = user.password,
+                    contact = user.contact,
+                };
+
+                var db = new ShoppingEntities();
+                db.Users.Add(newUser);
+                db.SaveChanges();
+
+                return RedirectToAction("Login");
+            }
+            return View();
+        }
+
         public ActionResult Add_to_Cart(int id, string name, int price)
         {
             Product product = new Product() { id = id, name = name, price = price };

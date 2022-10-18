@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link href="../../Content/Site.css" rel="stylesheet"></head>
+<body>
+    <div class="flex items-center justify-center pb-36 md:justify-end md:pr-8 min-h-screen mr-24">
+        <div class="rounded-md px-8 py-6 mx-4 mt-4 text-left bg-white opacity-90 shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3">
+            <h3 class="text-2xl font-bold text-center">Register</h3>
+            <form action="/User/Register" method="post">
+
+                <div class="mt-4">
+                    <div>
+                        <label class="block" for="Name">
+                            Name
+                        </label>
+                        <input type="text" name="name" placeholder="Your Name"
+                               class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                    </div>
+                    <span class="text-xs text-red-400">@Html.ValidationMessage("name")</span>
+                    <div class="mt-4">
+                        <label class="block" for="email">
+                            Email
+                        </label>
+                        <input type="text" name="email" placeholder="john@doe.com"
+                               class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        <span class="text-xs text-red-400">@Html.ValidationMessage("email")</span>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block">
+                            Password
+                        </label>
+                        <input type="password" name="cPassword" placeholder="Confirm Password"
+                               class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        <span class="text-xs text-red-400">@Html.ValidationMessage("cPassword")</span>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block">
+                            Password
+                        </label>
+                        <input type="password" name="password" placeholder="Password"
+                               class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        <span class="text-xs text-red-400">@Html.ValidationMessage("password")</span>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block" for="phone">
+                            Contact
+                        </label>
+                        <input type="text" name="contact" placeholder="01888888888"
+                               class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        <span class="text-xs text-red-400">@Html.ValidationMessage("contact")</span>
+                    </div>
+                    <div class="flex">
+                        <button class="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 hover:transition">Register</button>
+                    </div>
+                    <div class="mt-6 text-grey-dark">
+                        Already have an account?
+                        <a class="text-blue-600 hover:underline" href="">
+                            Log in
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

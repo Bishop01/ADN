@@ -26,5 +26,6 @@ namespace Assignment_03.DBContext
         }
     
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

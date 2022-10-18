@@ -10,5 +10,17 @@
   </EntityType>
   <EntityContainer Name="ShoppingEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Users" EntityType="ShoppingModel.User" />
   </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>
