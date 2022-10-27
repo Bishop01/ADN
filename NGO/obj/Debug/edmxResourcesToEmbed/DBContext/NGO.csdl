@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NGOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Restaurant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Requests" Relationship="NGOModel.FK_Requests_Restaurants" FromRole="Restaurant" ToRole="Request" />
+  </EntityType>
+  <EntityContainer Name="NGOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
+    <EntitySet Name="Employees" EntityType="NGOModel.Employee" />
+    <EntitySet Name="Requests" EntityType="NGOModel.Request" />
+    <AssociationSet Name="FK_Requests_Employees" Association="NGOModel.FK_Requests_Employees">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Requests_Restaurants" Association="NGOModel.FK_Requests_Restaurants">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Requests" Relationship="NGOModel.FK_Requests_Employees" FromRole="Employee" ToRole="Request" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="Int32" Nullable="false" DefaultValue="0" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="restaurantId" Type="Int32" Nullable="false" />
+    <Property Name="employeeId" Type="Int32" />
+    <Property Name="maxTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="incomplete" />
+    <NavigationProperty Name="Employee" Relationship="NGOModel.FK_Requests_Employees" FromRole="Request" ToRole="Employee" />
+    <NavigationProperty Name="Restaurant" Relationship="NGOModel.FK_Requests_Restaurants" FromRole="Request" ToRole="Restaurant" />
+    <Property Name="details" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="No details available" />
+  </EntityType>
+  <Association Name="FK_Requests_Employees">
+    <End Type="NGOModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="NGOModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="employeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Requests_Restaurants">
+    <End Type="NGOModel.Restaurant" Role="Restaurant" Multiplicity="1" />
+    <End Type="NGOModel.Request" Role="Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="restaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

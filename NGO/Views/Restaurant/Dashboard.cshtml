@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/Navbar.cshtml";
+}
+
+@section styles
+{
+    <link href="~/Content/CreateModal/Modal.css" rel="stylesheet" />
+}
+
+<div class="w-full flex items-center justify-center">
+    <div class="w-[80%] flex flex-col">
+        <div class="w-full flex mt-5">
+            <button id="create" class="ml-auto font-semibold py-2 px-3 bg-green-500 rounded-lg shadow-md text-white hover:transition hover:bg-opacity-[150%]">Create a new request</button>
+        </div>
+        <div class="w-full flex flex-col justify-center items-center">
+            <h2 class="p-5 font-semibold text-2xl">Dashboard</h2>
+            <div class="w-full rounded-lg shadow-md">
+                <table class="w-full table-auto border-collapse">
+                    <thead>
+                        <tr class="text-left">
+                            <th class="border p-3">Request ID</th>
+                            <th class="border p-3">Request Details</th>
+                            <th class="border p-3">Assigned Employee</th>
+                            <th class="border p-3">Employee Contact</th>
+                            <th class="border p-3">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var request in Model)
+                        {
+                            <tr>
+                                <td class="border p-3">@request.id</td>
+                                <td class="border p-3">@request.details</td>
+                                <td class="border p-3">@(request.employee==null ? "": request.employee.name)</td>
+                                <td class="border p-3">@(request.employee == null ? "": request.employee.contact)</td>
+                                <td class="border p-3 uppercase">@request.status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div id="createModal" class="modal w-full">
+
+    <!-- Modal content -->
+    <div class="w-full flex justify-center">
+        <div class="modal-content rounded-lg">
+            <span class="close" id="close">&times;</span>
+            <form class="p-4 space-y-2" method="post" action="/Restaurant/Request">
+                <div class="font-semibold text-xl flex p-3 w-full items-center justify-center">
+                    <h2>Send a request</h2>
+                </div>
+                <div class="space-y-2 flex flex-col p-3 w-full">
+                    <label>Request details</label>
+                    <input name="details" class="w-full rounded-lg pl-3 py-3 outline outline-1 outline-gray-400 focus:outline-sky-500 focus:outline-2" type="text" placeholder="Enter details" />
+                </div>
+                <div class="space-y-2 flex flex-col p-3 w-full">
+                    <label>Preserving time</label>
+                    <input name="maxTime" class="w-full rounded-lg pl-3 py-3 outline outline-1 outline-gray-400 focus:outline-sky-500 focus:outline-2" type="text" placeholder="Max day of preservation limit" />
+                </div>
+                <div class="flex p-3">
+                    <button id="request" class="font-semibold py-2 px-3 bg-sky-500 rounded-lg shadow-md text-white hover:transition hover:bg-opacity-[150%]">Request</button>
+                </div>
+
+                <input class="hidden" name="restaurantId" value="@ViewBag.restaurantId" />
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+{
+    <script src="~/Content/CreateModal/Modal.js"></script>
+}
