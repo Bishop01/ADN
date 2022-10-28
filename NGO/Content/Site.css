@@ -544,8 +544,20 @@ video {
   }
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .collapse {
   visibility: collapse;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.ml-auto {
+  margin-left: auto;
 }
 
 .mb-20 {
@@ -566,14 +578,6 @@ video {
 
 .mt-3 {
   margin-top: 0.75rem;
-}
-
-.mt-5 {
-  margin-top: 1.25rem;
-}
-
-.ml-auto {
-  margin-left: auto;
 }
 
 .block {
@@ -622,6 +626,10 @@ video {
 
 .w-\[80\%\] {
   width: 80%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
 }
 
 .w-\[30\%\] {
@@ -691,14 +699,19 @@ video {
   background-color: rgb(132 204 22 / var(--tw-bg-opacity));
 }
 
+.bg-sky-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
+}
+
 .bg-rose-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(244 63 94 / var(--tw-bg-opacity));
 }
 
-.bg-sky-500 {
+.bg-gray-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
 .bg-white {
@@ -802,6 +815,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -869,6 +887,11 @@ video {
 .hover\:bg-green-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(22 101 52 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-red-800:hover {

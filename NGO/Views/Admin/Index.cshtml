@@ -11,16 +11,20 @@
 }
 
 <div class="w-full flex items-center justify-center">
-    <div class="w-[80%] flex flex-col">
-
+    <div class="w-[90%] flex flex-col">
+        <div class="w-full flex mt-5">
+            <a class="inline-block ml-auto font-semibold py-2 px-3 bg-sky-500 rounded-lg shadow-md text-white hover:cursor-pointer hover:transition hover:bg-blue-500" href="/Admin/Completed">Completed Requests</a>
+        </div>
         <div class="w-full flex flex-col justify-center items-center">
             <h2 class="p-5 font-semibold text-2xl">Dashboard</h2>
             <div class="w-full rounded-lg shadow-md">
                 <table class="w-full table-auto border-collapse">
                     <thead>
                         <tr class="text-left">
-                            <th class="border p-3">Request ID</th>
+                            <th class="border p-3">Restaurant Name</th>
                             <th class="border p-3">Request Details</th>
+                            <th class="border p-3">Request Made</th>
+                            <th class="border p-3">Time Remaining</th>
                             <th class="border p-3">Assigned Employee</th>
                             <th class="border p-3">Employee Contact</th>
                             <th class="border p-3">Status</th>
@@ -30,24 +34,36 @@
                     <tbody>
                         @foreach (var request in Model)
                         {
+                            if (request.status == "completed")
+                            {
+                                continue;
+                            }
+
                             <tr>
-                                <td class="border p-3">@request.id</td>
+                                <td class="border p-3">@request.restaurant.name</td>
                                 <td class="border p-3">@request.details</td>
+                                <td class="border p-3">@Math.Floor(((DateTime.Now - request.creationDate).TotalDays)) days ago</td>
+                                <td class="border p-3">@Math.Ceiling(((request.expirationDate - request.creationDate).TotalDays)) days</td>
                                 <td class="border p-3">
                                     @if (request.employee == null)
                                     {
-                                        <button name="assign" class="assign font-semibold text-sm py-2 px-3 bg-lime-500 rounded-lg shadow-md text-white hover:transition hover:bg-green-800">Assign Employee</button>
+                                        <button id="@request.id" class="assign font-semibold text-sm py-2 px-3 bg-lime-500 rounded-lg shadow-md text-white hover:transition hover:bg-green-800">Assign Employee</button>
                                     }
                                     else
                                     {
-                                        <p>request.employee.name;</p>
+                                        <p>@request.employee.name</p>
                                     }
                                 </td>
                                 <td class="border p-3">@(request.employee == null ? "": request.employee.contact)</td>
                                 <td class="border p-3 uppercase">@request.status</td>
                                 <td class="border p-3">
-                                    <button class="font-semibold py-2 px-3 bg-rose-500 rounded-lg shadow-md text-white hover:transition hover:bg-red-800">Delete</button>
-                                    <button class="font-semibold py-2 px-3 bg-sky-500 rounded-lg shadow-md text-white hover:transition hover:bg-blue-800">Complete</button>
+                                    <a class="inline-block font-semibold py-2 px-3 bg-rose-500 rounded-lg shadow-md text-white hover:transition hover:bg-red-800
+                                       @(request.status=="deleted" ? "pointer-events-none bg-gray-500" : "")"
+                                       href="@Url.Action("DeleteRequest", "Admin", new { id = request.id })">Delete</a>
+                                    
+                                    <a class="inline-block font-semibold py-2 px-3 bg-sky-500 rounded-lg shadow-md text-white hover:transition hover:bg-blue-800
+                                        @(request.status=="deleted" ? "pointer-events-none bg-gray-500" : "")"
+                                       href="@Url.Action("CompleteRequest", "Admin", new { id = request.id })">Complete</a>
                                 </td>
                             </tr>
                         }
@@ -63,27 +79,29 @@
 
     <!-- Modal content -->
     <div class="w-full flex justify-center">
-        <div class="modal-content rounded-lg">
+        <div class="modal-content-2 rounded-lg">
             <span class="close" id="close">&times;</span>
-            <form class="p-4 space-y-2" method="post" action="/Restaurant/Request">
+            <form id="form" class="p-4 space-y-2" method="post" action="/Admin/AssignEmployee">
                 <div class="font-semibold text-xl flex p-3 w-full items-center justify-center">
                     <h2>Select an employee</h2>
                 </div>
                 <div class="space-y-2 flex flex-col p-3 w-full">
-                    <label>Employees</label>
-                    <select name="selectedEmployee">
+                    <label class="font-semibold text-lg">Employees</label>
+                    <select name="employeeId" class="p-3 border rounded-lg shadow-md">
                         @foreach(var employee in ViewBag.Employees)
                         {
-                            <option name="employee" value=@employee.name>@employee.name</option>
+                            <option value=@employee.id>@employee.name</option>
                         }
                     </select>
                 </div>
                 
                 <div class="flex p-3">
-                    <button id="request" class="font-semibold py-2 px-3 bg-sky-500 rounded-lg shadow-md text-white hover:transition hover:bg-opacity-[150%]">Request</button>
+                    <button class="font-semibold py-2 px-3 bg-lime-500 rounded-lg shadow-md text-white hover:transition hover:bg-green-800">Assign</button>
                 </div>
 
-                <input class="hidden" name="restaurantId" value="@ViewBag.restaurantId" />
+                <input id="requestId" name="id" class="hidden"/>
+                <input id="status" name="id" class="hidden"/>
+
             </form>
         </div>
     </div>

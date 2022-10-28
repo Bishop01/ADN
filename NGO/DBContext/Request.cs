@@ -23,9 +23,12 @@ namespace NGO.DBContext
         public int id { get; set; }
         public int restaurantId { get; set; }
         public Nullable<int> employeeId { get; set; }
-        public string maxTime { get; set; }
+        public int maxTime { get; set; }
         public string status { get; set; }
         public string details { get; set; }
+        public System.DateTime creationDate { get; set; }
+        public System.DateTime expirationDate { get; set; }
+        public Nullable<System.DateTime> completionDate { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Restaurant Restaurant { get; set; }

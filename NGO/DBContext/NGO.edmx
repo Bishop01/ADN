@@ -23,9 +23,12 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="restaurantId" Type="int" Nullable="false" />
           <Property Name="employeeId" Type="int" />
-          <Property Name="maxTime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="maxTime" Type="int" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="details" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="creationDate" Type="date" Nullable="false" />
+          <Property Name="expirationDate" Type="date" Nullable="false" />
+          <Property Name="completionDate" Type="date" />
         </EntityType>
         <EntityType Name="Restaurants">
           <Key>
@@ -117,11 +120,14 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="restaurantId" Type="Int32" Nullable="false" />
           <Property Name="employeeId" Type="Int32" />
-          <Property Name="maxTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="maxTime" Type="Int32" Nullable="false" />
           <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="incomplete" />
           <NavigationProperty Name="Employee" Relationship="NGOModel.FK_Requests_Employees" FromRole="Request" ToRole="Employee" />
           <NavigationProperty Name="Restaurant" Relationship="NGOModel.FK_Requests_Restaurants" FromRole="Request" ToRole="Restaurant" />
           <Property Name="details" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="No details available" />
+          <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="completionDate" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FK_Requests_Employees">
           <End Type="NGOModel.Employee" Role="Employee" Multiplicity="0..1" />
@@ -177,6 +183,9 @@
           <EntitySetMapping Name="Requests">
             <EntityTypeMapping TypeName="NGOModel.Request">
               <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="completionDate" ColumnName="completionDate" />
+                <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
                 <ScalarProperty Name="details" ColumnName="details" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="maxTime" ColumnName="maxTime" />

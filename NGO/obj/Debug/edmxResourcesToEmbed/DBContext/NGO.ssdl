@@ -18,9 +18,12 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="restaurantId" Type="int" Nullable="false" />
     <Property Name="employeeId" Type="int" />
-    <Property Name="maxTime" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="maxTime" Type="int" Nullable="false" />
     <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="details" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="creationDate" Type="date" Nullable="false" />
+    <Property Name="expirationDate" Type="date" Nullable="false" />
+    <Property Name="completionDate" Type="date" />
   </EntityType>
   <EntityType Name="Restaurants">
     <Key>

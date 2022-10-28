@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Completed";
+    Layout = "~/Views/Shared/Navbar.cshtml";
+}
+
+<div class="w-full flex items-center justify-center">
+    <div class="w-[80%] flex flex-col justify-center items-center">
+        <div class="w-full flex mt-5">
+            <a class="inline-block ml-auto font-semibold py-2 px-3 bg-lime-500 rounded-lg shadow-md text-white hover:cursor-pointer hover:transition hover:bg-green-800" href="/Admin/Index">Dashboard</a>
+        </div>
+        <h2 class="p-5 font-semibold text-2xl">Completed Requests</h2>
+        <div class="w-full rounded-lg shadow-md">
+            <table class="w-full table-auto border-collapse">
+                <thead>
+                    <tr class="text-left">
+                        <th class="border p-3">Request ID</th>
+                        <th class="border p-3">Restaurant Name</th>
+                        <th class="border p-3">Requested At</th>
+                        <th class="border p-3">Completed At</th>
+                        <th class="border p-3">Completed By</th>
+                        <th class="border p-3">Employee Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var request in Model)
+                    {
+                        if (request.status == "completed")
+                        {
+                            <tr>
+                                <td class="border p-3">@request.id</td>
+                                <td class="border p-3">@request.restaurant.name</td>
+                                <td class="border p-3">@request.creationDate</td>
+                                <td class="border p-3">@request.completionDate</td>
+                                <td class="border p-3">@request.employee.name</td>
+                                <td class="border p-3">@request.employee.contact</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

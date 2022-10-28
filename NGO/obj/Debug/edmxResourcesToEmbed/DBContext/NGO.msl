@@ -25,6 +25,9 @@
     <EntitySetMapping Name="Requests">
       <EntityTypeMapping TypeName="NGOModel.Request">
         <MappingFragment StoreEntitySet="Requests">
+          <ScalarProperty Name="completionDate" ColumnName="completionDate" />
+          <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
           <ScalarProperty Name="details" ColumnName="details" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="maxTime" ColumnName="maxTime" />

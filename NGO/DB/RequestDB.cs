@@ -26,17 +26,16 @@ namespace NGO.DB
                     maxTime = req.maxTime,
                     status = req.status,
                     details = req.details,
+                    creationDate = req.creationDate,
+                    expirationDate = req.expirationDate,
+                    completionDate = req.completionDate,
                 };
 
                 if (req.Employee != null)
                 {
                     model.employee = new EmployeeModel() { id = req.Employee.id, name = req.Employee.name, contact = req.Employee.contact };
                 }
-                if (req.Restaurant != null)
-                {
-                    model.restaurant = new RestaurantModel() { id = req.Restaurant.id, name = req.Restaurant.name, location = req.Restaurant.location };
-                }
-
+                model.restaurant = new RestaurantModel() { id = req.Restaurant.id, name = req.Restaurant.name, location = req.Restaurant.location };
                 requests.Add(model);
             }
 
@@ -62,6 +61,9 @@ namespace NGO.DB
                     details = req.details,
                     employee = null,
                     restaurant = null,
+                    creationDate = req.creationDate,
+                    expirationDate = req.expirationDate,
+                    completionDate = req.completionDate,
                 };
                 if(req.Employee !=null)
                 {
@@ -92,7 +94,12 @@ namespace NGO.DB
                 {
                     restaurantId = request.restaurantId,
                     maxTime = request.maxTime,
+                    creationDate = DateTime.Now,
+                    expirationDate = DateTime.Now,
                 };
+
+                r.expirationDate = r.creationDate.AddDays(r.maxTime);
+
                 if (request.details != String.Empty)
                  r.details = request.details;
 
@@ -105,17 +112,44 @@ namespace NGO.DB
             {
                 return 0;
             }
-            //Request r = new Request()
-            //{
-            //    restaurantId = request.restaurantId,
-            //    maxTime = request.maxTime,
-            //};
-            //if (request.details != String.Empty)
-            //    r.details = request.details;
+        }
 
-            //db.Requests.Add(r);
-            //db.SaveChanges();
-            //return 1;
+        public static int Update(RequestModel requestModel)
+        {
+            var request = db.Requests.Find(requestModel.id);
+
+            if (request == null)
+                return 0;
+
+            request.employeeId = requestModel.employeeId;
+            db.SaveChanges();
+
+            return 1;
+        }
+        public static int Update(int requestId, string status)
+        {
+            var request = db.Requests.Find(requestId);
+            if(request == null)
+            {
+                return 0;
+            }
+
+            request.status = status;
+            request.completionDate = DateTime.Now;
+            db.SaveChanges();
+            return 1;
+        }
+        public static int Delete(int requestId, string status)
+        {
+            var request = db.Requests.Find(requestId);
+            if (request == null)
+            {
+                return 0;
+            }
+
+            request.status = status;
+            db.SaveChanges();
+            return 1;
         }
     }
 }

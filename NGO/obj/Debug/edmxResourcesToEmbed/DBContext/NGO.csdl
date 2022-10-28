@@ -41,11 +41,14 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="restaurantId" Type="Int32" Nullable="false" />
     <Property Name="employeeId" Type="Int32" />
-    <Property Name="maxTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="maxTime" Type="Int32" Nullable="false" />
     <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="incomplete" />
     <NavigationProperty Name="Employee" Relationship="NGOModel.FK_Requests_Employees" FromRole="Request" ToRole="Employee" />
     <NavigationProperty Name="Restaurant" Relationship="NGOModel.FK_Requests_Restaurants" FromRole="Request" ToRole="Restaurant" />
     <Property Name="details" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="No details available" />
+    <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="completionDate" Type="DateTime" Precision="0" />
   </EntityType>
   <Association Name="FK_Requests_Employees">
     <End Type="NGOModel.Employee" Role="Employee" Multiplicity="0..1" />

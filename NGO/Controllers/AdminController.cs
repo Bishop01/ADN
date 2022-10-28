@@ -17,31 +17,75 @@ namespace NGO.Controllers
             var employees = EmployeeDB.All();
             var requests = RequestDB.All();
 
-            List<EmployeeModel> availableEmployees = new List<EmployeeModel>();
+            List<EmployeeModel> availableEmployees = new List<EmployeeModel>(employees);
 
             foreach (var employee in employees)
             {
-                foreach(var request in requests)
+                if(employee.role == 0)
                 {
-                    if(request.employee != null)
+                    foreach (var request in requests)
                     {
-                        if (employee.id == request.employee.id)
+                        if(request.employeeId == employee.id)
                         {
-                            if (request.status == "incomplete")
+                            if(request.status == "incomplete")
                             {
-                                continue;
+                                availableEmployees.Remove(employee);
                             }
                         }
                     }
-                    if (!availableEmployees.Contains(employee) && employee.role != 1)
-                    {
-                        availableEmployees.Add(employee);
-                    }
                 }
+                else
+                {
+                    availableEmployees.Remove(employee);
+                }
+                //foreach(var request in requests)
+                //{
+                //    if(request.employee != null)
+                //    {
+                //        if (employee.id == request.employee.id)
+                //        {
+                //            if (request.status == "incomplete")
+                //            {
+                //                continue;
+                //            }
+                //        }
+                //    }
+                //    if (!availableEmployees.Contains(employee) && employee.role != 1)
+                //    {
+                //        availableEmployees.Add(employee);
+                //    }
+                //}
             }
 
             ViewBag.Employees = availableEmployees;
             return View(requests);
+        }
+
+        [HttpPost]
+        public ActionResult AssignEmployee(RequestModel request)
+        {
+            if (RequestDB.Update(request) == 1)
+                return RedirectToAction("Index");
+
+            return RedirectToAction("Index", "Login");
+        }
+
+        public ActionResult Completed()
+        {
+            return View(RequestDB.All());
+        }
+
+        public ActionResult CompleteRequest(int id)
+        {
+            if (RequestDB.Update(id, "completed") == 1)
+                return RedirectToAction("Completed");
+
+            return RedirectToAction("Index");
+        }
+        public ActionResult DeleteRequest(int id)
+        {
+            RequestDB.Update(id, "deleted");
+            return RedirectToAction("Index");
         }
     }
 }
