@@ -1,0 +1,9 @@
+G:\Projects\ADN\BloodDonate\BLL\bin\Debug\BLL.dll
+G:\Projects\ADN\BloodDonate\BLL\bin\Debug\BLL.pdb
+G:\Projects\ADN\BloodDonate\BLL\bin\Debug\DAL.dll
+G:\Projects\ADN\BloodDonate\BLL\bin\Debug\DAL.pdb
+G:\Projects\ADN\BloodDonate\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+G:\Projects\ADN\BloodDonate\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+G:\Projects\ADN\BloodDonate\BLL\obj\Debug\BLL.csproj.CopyComplete
+G:\Projects\ADN\BloodDonate\BLL\obj\Debug\BLL.dll
+G:\Projects\ADN\BloodDonate\BLL\obj\Debug\BLL.pdb
